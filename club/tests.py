@@ -26,5 +26,14 @@ class EventTest(TestCase):
    def test_table(self):
        self.assertEqual(str(Event._meta.db_table), 'event')
 
- 
+ class MeetingTypeForm(forms.ModelForm):
+    class Meta:
+        model=Meeting
+        fields='__all__'
+
+#Form tests
+class MeetingType_Form_Test(TestCase):
+    def test_typeform_is_valid(self):
+        form=MeetingTypeForm(data={'meetingTitle': "party", 'meetingAgenda' : "something"})
+        self.assertTrue(form.is_valid())
 
